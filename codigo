@@ -1,0 +1,43 @@
+print(f"""
+--- MENU ---    
+[1] Depositar 
+[2] Sacar
+[3] Extrato  
+[0] Sair    
+      """)
+
+saldo  = 300.0
+limite = 500.0
+contador_saques = 0
+contador_dep = 0
+
+while True:
+    opcao = int(input("Digite a opção: "))
+
+    if(opcao == 1):
+       saldo_deposito = float(input("Digite o valor que deseja depositar: "))
+
+       saldo = saldo + saldo_deposito    
+       print(f"Foi depositado {saldo_deposito} R$. Seu saldo atual é {saldo} R$") 
+       contador_dep += 1
+
+    elif(opcao == 2):
+       saldo_sacar = float(input("Digite o valor que deseja sacar: "))
+       
+       if saldo_sacar > saldo:
+            print(f"Não foi possivel sacar o saldo que deseja: {saldo_sacar} R$ o saldo atual da sua conta é {saldo} R$")
+       elif contador_saques >= 3:
+            print("Limite de 3 saques atingido")
+       else:
+            contador_saques += 1
+            saldo = saldo - saldo_sacar
+            print(f"Foi sacado {saldo_sacar} R$. Seu saldo atual é {saldo} R$") 
+
+    elif(opcao == 3):
+        print(f"Foram realizadas: {contador_saques} - Saques / {contador_dep} - Depositos   ")
+
+    elif(opcao == 0):
+        print("Saindo...")
+        break
+    else:
+        print("Opção invalida")
